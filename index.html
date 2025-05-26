@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNOWEAT - Smart Meal Planning</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="header fixed">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                  <span class="logo-icon">🍏🍚</span>
+                    <h1>KNOWEAT</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#meal-planner">Meal Planner</a></li>
+                    <li><a href="#nutrition">Nutrition Info</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#partners">Partners</a></li>
+                    <li><a href="#" id="admin-login">Admin</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h2 class="hero-title">Healthy Eating, Simplified</h2>
+                <p class="hero-subtitle">Plan meals, track nutrition, and eat smart with KNOWEAT.</p>
+                <a href="#meal-planner" class="btn-primary">Get Started</a>
+            </div>
+        </section>
+
+        <section id="meal-planner" class="meal-planner">
+            <div class="container">
+                <h2 class="section-title">AI Meal Planner</h2>
+                <div class="planner-container">
+                    <div class="input-section">
+                        <h3>What ingredients do you have?</h3>
+                        <div class="ingredient-input">
+                            <input type="text" id="ingredient-input" placeholder="e.g. chicken, rice, tomatoes...">
+                            <button id="add-ingredient" class="btn-secondary">Add</button>
+                            <button id="speech-ingredient" class="btn-secondary"><i class="fas fa-microphone"></i></button>
+                  
+          
+                        </div>
+                        <div class="ingredient-tags" id="ingredient-tags"></div>
+                        <button id="open-dietary" class="btn-secondary">Set Dietary Preferences</button>
+                        <button id="generate-meal" class="btn-primary">Generate Meal Plan</button>
+                    </div>
+                    <div class="output-section">
+                        <div class="loading-spinner" id="loading-spinner" style="display: none;">
+                            <div class="spinner"></div>
+                            <p>Our AI is creating your perfect meal plan...</p>
+                        </div>
+                        <div class="meal-plan" id="meal-plan-result"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nutrition" class="nutrition-info">
+            <div class="container">
+                <h2 class="section-title">Nutrition Info</h2>
+                <div class="search-bar">
+                    <input type="text" id="food-search" placeholder="Search food items...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                    <button id="speech-search" class="btn-secondary"><i class="fas fa-microphone"></i></button>
+                </div>
+                <div class="loading-spinner" id="nutrition-loading-spinner" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Fetching nutrition info...</p>
+                </div>
+                <div class="nutrition-grid" id="nutrition-grid"></div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Us</h2>
+                <p>KNOWEAT is dedicated to making healthy eating accessible and enjoyable through smart technology.</p>
+            </div>
+        </section>
+
+        <section id="partners" class="partners">
+            <div class="container">
+                <h2 class="section-title">Our Partners</h2>
+                <div class="partner-logos">
+                    <div class="partner">Partner 1</div>
+                    <div class="partner">Partner 2</div>
+                    <div class="partner">Partner 3</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Sheet for Dietary Preferences -->
+    <div class="bottom-sheet" id="dietary-bottom-sheet">
+        <div class="handle"></div>
+        <div class="content">
+            <h4>Dietary Preferences</h4>
+            <div class="options-grid">
+                <label><input type="checkbox" name="vegetarian"> Vegetarian</label>
+                <label><input type="checkbox" name="vegan"> Vegan</label>
+                <label><input type="checkbox" name="gluten-free"> Gluten Free</label>
+                <label><input type="checkbox" name="dairy-free"> Dairy Free</label>
+                <label><input type="checkbox" name="Diabetic friendly"> Diabetic </label>
+                <label><input type="checkbox" name="halal"> Halal</label>
+                <label><input type="checkbox" name ="African oreintated"> Truly African</label>
+                <label><input type="checkbox" name="Cholestrol-free"> Cholestrol-free</label>
+                <label><input type="checkbox" name="Ulcer-friendly">Ulcer</label>
+                <label><input type="checkbox" name="Nigerian delicacies"> Nigerian</label>
+                <label><input type="checkbox" name="Toddlers">Toddlers</label>
+                <label><input type="checkbox" name="Teenagers"> Teenagers
+                </label>
+                <label><input type="checkbox" name="Adults"> Adults
+              
+                </label>
+                <label><input type="checkbox" name="Elderly"> pElderly</label>
+            </div>
+            <button id="apply-preferences" class="btn-primary">Apply</button>
+        </div>
+    </div>
+    <!-- Admin Login Modal -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h3>Admin Login</h3>
+            <form id="admin-form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
